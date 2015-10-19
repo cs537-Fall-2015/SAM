@@ -5,6 +5,7 @@ import generic.RoverThreadHandler;
 import java.io.IOException;
 
 import other.TestClientForSam;
+import server.SAMClient;
 import server.SAMServer;
 import module1.ModuleOneClient;
 import module2.ModuleTwoClient;
@@ -20,7 +21,8 @@ public class MasterMain {
 		
 		try {
 			
-			module_SAM.ModuleOneServer serverOne = new module_SAM.ModuleOneServer();
+			module1.ModuleOneServer serverOne = new module_SAM.ModuleOneServer();
+			//SAMServer serverOne = new SAMServer(port_one);
 			Thread server_1 = RoverThreadHandler.getRoverThreadHandler().getNewThread(serverOne);
 			
 			// create a thread for module two
@@ -36,7 +38,8 @@ public class MasterMain {
 			// and from module 2 client to module 2 server
 			
 			// client one server sending messages to server two
-			module_SAM.ModuleOneClient clientOne = new module_SAM.ModuleOneClient(); // notice port_two
+			module1.ModuleOneClient clientOne = new module1.ModuleOneClient(); // notice port_two
+			//SAMClient clientOne = new SAMClient(port_two, null);
 			Thread client_1 = RoverThreadHandler.getRoverThreadHandler().getNewThread(clientOne);
 			
 			// client two server sending messages to server one
