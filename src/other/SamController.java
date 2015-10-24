@@ -1,6 +1,6 @@
 package other;
 
-import main.SAM;
+import SAM.SAM;
 
 public class SamController{
 	

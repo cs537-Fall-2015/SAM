@@ -3,7 +3,7 @@ package other;
 import org.junit.After;
 import org.junit.Before;
 
-import main.SAM;
+import SAM.SAM;
 
 
 public class SamConstrainst<PadsController> {

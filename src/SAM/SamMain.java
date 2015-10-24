@@ -1,4 +1,4 @@
-package main;
+package SAM;
 
 import generic.RoverThreadHandler;
 import json.Constants;
