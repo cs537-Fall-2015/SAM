@@ -1,8 +1,10 @@
 package generic;
 
+import other.TestClientForSam;
+
 public class RoverThread extends Thread{
 	
-	public RoverThread(Runnable runnable, String name){
-		super(runnable, name);
+	public RoverThread(TestClientForSam testClient, String name){
+		super(name);
 	}
 }

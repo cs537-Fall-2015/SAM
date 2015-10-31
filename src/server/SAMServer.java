@@ -7,11 +7,11 @@ import java.io.ObjectOutputStream;
 import json.Constants;
 import json.GlobalReader;
 import json.MyWriter;
-import main.SAM;
 
 import org.json.simple.JSONObject;
 
 import other.SamController;
+import SAM.SAM;
 import callback.CallBack;
 
 import com.google.gson.Gson;

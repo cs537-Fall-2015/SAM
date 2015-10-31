@@ -3,7 +3,11 @@ package other;
 import org.junit.After;
 import org.junit.Before;
 
+<<<<<<< HEAD:src/other/SamConstrainst.java
 import main.SAM;
+=======
+import SAM.SAM;
+>>>>>>> origin:src/other/SamConstrainst.java
 
 
 public class SamConstrainst<PadsController> {
