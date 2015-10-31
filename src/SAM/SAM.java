@@ -1,6 +1,6 @@
 package SAM;
 
-
+// SAM Model
 
 public class SAM {
 	private double SAM_ON;
