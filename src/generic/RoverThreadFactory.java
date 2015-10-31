@@ -6,8 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ThreadFactory;
 
-import other.TestClientForSam;
-
 
 class RoverThreadFactory implements ThreadFactory {
 
@@ -31,8 +29,9 @@ class RoverThreadFactory implements ThreadFactory {
        stats = new ArrayList<String>();
     }
 
-	public Thread newThread(TestClientForSam testClient) {
-		Thread t = new RoverThread(testClient, name + "-Thread_" + counter);
+	@Override
+	public Thread newThread(Runnable runnable) {
+		Thread t = new RoverThread(runnable, name + "-Thread_" + counter);
 	      counter++;
 	      stats.add(String.format("Created thread %d with name %s on %s \n", t.getId(), t.getName(), new Date()));
 	      return t;
@@ -66,11 +65,5 @@ class RoverThreadFactory implements ThreadFactory {
 
 	public void setStats(List<String> stats) {
 		this.stats = stats;
-	}
-
-	@Override
-	public Thread newThread(Runnable r) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

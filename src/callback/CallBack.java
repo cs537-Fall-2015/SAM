@@ -13,8 +13,8 @@ public class CallBack {
 		CallBackClient client = null;
 		try {
 			client = new CallBackClient(9009, null);
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
+			} 
+		catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
 		client.run();

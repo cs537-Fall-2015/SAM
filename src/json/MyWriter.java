@@ -1,4 +1,10 @@
 package json;
+
+/*	
+ * Created by: 	Jonathan Young
+ * Date: 		May 14, 2015
+ */
+
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -31,14 +37,16 @@ public class MyWriter {
 		// Write the file
 		try {
 			writer.write(jsonString);
-			System.out.println(myFilePath + " written to file.");
+			//System.out.println(myFilePath + " written to file.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		// Close the Writer
 		try {
+			
 			writer.close();
+			//System.out.println("file Closed");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	

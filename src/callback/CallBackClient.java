@@ -1,9 +1,5 @@
-package callback;
 
-/*	
- * Created by: 	Jonathan Young
- * Date: 		May 14, 2015
- */
+package callback;
 
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
@@ -35,11 +31,11 @@ public class CallBackClient extends RoverClientRunnable{
             closeAll();
 		}	        
         catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		catch (Exception error) {
 			System.out.println("Client: Error:" + error.getMessage());
+			error.printStackTrace();
 		}
 		
 	}
