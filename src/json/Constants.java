@@ -6,5 +6,6 @@ public final class Constants {
 	
 	public static final int PORT_ONE = 9019;
 	public static final int PORT_TWO = 9002;
+    public static final int SAM_PORT = 9014;
 	
 }
