@@ -8,7 +8,7 @@ import SAM.server.SamClient;
 import SAM.server.SamServer;
 import json.Constants;
 
-public class testMain {
+public class samTestMain {
     public static void main(String[] args) {
         int port_one = Constants.SAM_PORT;
         
