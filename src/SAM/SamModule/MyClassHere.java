@@ -1,4 +1,4 @@
-package SamModule;
+package SAM.SamModule;
 
 import java.io.File;
 

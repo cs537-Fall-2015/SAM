@@ -1,4 +1,4 @@
-package server;
+package SAM.server;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -10,13 +10,14 @@ import json.MyWriter;
 
 import org.json.simple.JSONObject;
 
-import other.SamController;
-import SAM.SAM;
+
 import callback.CallBack;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import SAM.SamMain.SAM;
+import SAM.SamMain.SamController;
 import generic.RoverServerRunnable;
 
 public class SAMServer extends RoverServerRunnable{

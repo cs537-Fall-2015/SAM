@@ -1,4 +1,4 @@
-package server;
+package SAM.server;
 
 import generic.RoverClientRunnable;
 

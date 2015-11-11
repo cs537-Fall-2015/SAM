@@ -1,3 +1,5 @@
+package SAM.junk.GUISample;
+
 import java.net.*;
 import java.io.*;
 import java.util.*;

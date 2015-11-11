@@ -1,7 +1,10 @@
+package SAM.junk.GUISample;
+
 import java.io.*;
 import java.net.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
 
 /*
  * The server that can be run both as a console application or a GUI
@@ -12,7 +15,7 @@ public class Server {
 	// an ArrayList to keep the list of the Client
 	private ArrayList<ClientThread> al;
 	// if I am in a GUI
-	private ServerGUI sg;
+	ServerGUI sg;
 	// to display time
 	private SimpleDateFormat sdf;
 	// the port number to listen for connection

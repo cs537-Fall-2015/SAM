@@ -1,6 +1,6 @@
-package other;
+package SAM.junk.other;
 
-import SAM.SAM;
+import SAM.SamMain.SAM;
 
 public class SamController{
 	
