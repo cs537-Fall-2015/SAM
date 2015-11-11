@@ -1,4 +1,4 @@
-package SamMain;
+package SAM.SamMain;
 
 // SAM Model
 
