@@ -4,7 +4,7 @@ package SAM.SamTestMain;
 import java.io.IOException;
 
 import generic.RoverThreadHandler;
-import SAM.server.SAMClient;
+import SAM.SamTestMain.SAMClient;
 import SAM.server.SAMServer;
 import json.Constants;
 
