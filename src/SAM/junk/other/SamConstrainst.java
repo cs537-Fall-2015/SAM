@@ -1,14 +1,6 @@
-package other;
+package SAM.junk.other;
 
-import org.junit.After;
-import org.junit.Before;
-
-<<<<<<< HEAD:src/other/SamConstrainst.java
-import main.SAM;
-=======
-import SAM.SAM;
->>>>>>> origin:src/other/SamConstrainst.java
-
+import SAM.SamMain.SAM;
 
 public class SamConstrainst<PadsController> {
 
@@ -35,7 +27,7 @@ public class SamConstrainst<PadsController> {
 		int spareBits = 2;
 		sam = ((SamController) controller).action("SAM_REPLACE_BITS"); 
 		SAM sam = null;
-		System.out.println("sam.getSpare_bits()"+sam.getSpare_bits()); 
+		System.out.println("sam.getSpare_bits()"+ sam.getSpare_bits()); 
 		assertEquals(sam.getSpare_bits(), spareBits);
 	}
 
