@@ -124,6 +124,7 @@ public class SAMServer extends RoverServerRunnable{
 				inputFromAnotherObject.close();
 				outputToAnotherObject.close();
 			}
+			
 			System.out.println("Server: Shutting down Socket server 1!!");
 			closeAll();
 		} catch (IOException e) {
