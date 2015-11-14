@@ -92,6 +92,10 @@ public class SAM {
 		// TODO Auto-generated method stub
 		
 	}
+	public void run() {
+		//write the necessary stuff
+		System.out.println("SAM Module: SAM is gathering the data");
+	}
 	
 
 }
