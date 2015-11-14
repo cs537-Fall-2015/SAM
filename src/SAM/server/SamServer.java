@@ -32,7 +32,6 @@ public class SAMServer extends RoverServerRunnable{
 		// TODO Auto-generated method stub
 		
 		SAM sam = new SAM();
-		CallBack cb = new CallBack();
 		
 		String objectToClean = "FILTER_ROCK"; 
 		
@@ -125,7 +124,6 @@ public class SAMServer extends RoverServerRunnable{
 				inputFromAnotherObject.close();
 				outputToAnotherObject.close();
 			}
-			cb.done();
 			System.out.println("Server: Shutting down Socket server 1!!");
 			closeAll();
 		} catch (IOException e) {
