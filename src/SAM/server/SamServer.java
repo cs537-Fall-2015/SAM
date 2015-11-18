@@ -156,7 +156,7 @@ public class SAMServer extends RoverServerRunnable{
     }
     void writeJson() {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		new MyWriter(sam, 3); 
+		new MyWriter(sam, 7); 
 	}
 
 	@SuppressWarnings("unchecked")
