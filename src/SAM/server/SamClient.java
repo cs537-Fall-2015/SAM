@@ -11,20 +11,20 @@ import java.net.UnknownHostException;
 import generic.RoverClientRunnable;
 
 public class SAMClient extends RoverClientRunnable{
-    
-    public SAMClient(int port, InetAddress host) throws UnknownHostException {
-        super(port, host);
-    }
-    
-    @Override
-    public void run() {
-        sendMessage("SAM ON");
-        sendMessage("SAM RUN");
+
+	public SAMClient(int port, InetAddress host) throws UnknownHostException {
+		super(port, host);
+	}
+
+	@Override
+	public void run() {
+		sendMessage("SAM ON");
+		sendMessage("SAM RUN");
         sendMessage("SAM OFF");
         sendMessage("FILTER_STATUS");
         sendMessage("PRT_STATUS");
         sendMessage("BITS_STUCK");
-        // sendMessage("SAM OFF");
+       // sendMessage("SAM OFF");
         sendMessage("exit");
         
         try {
@@ -32,9 +32,9 @@ public class SAMClient extends RoverClientRunnable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-    
-    private void sendMessage(String msg){
+	}
+	
+	private void sendMessage(String msg){
         try {
             ObjectOutputStream outputToAnotherObject = null;
             ObjectInputStream inputFromAnotherObject = null;
@@ -70,7 +70,7 @@ public class SAMClient extends RoverClientRunnable{
         } catch (Exception error) {
             System.out.println("Testing Framework: Error:" + error.getMessage());
         }
-        
-    }
-    
+
+	}
+
 }
