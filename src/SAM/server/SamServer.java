@@ -9,9 +9,6 @@ import json.GlobalReader;
 import json.MyWriter;
 
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -156,7 +153,7 @@ public class SAMServer extends RoverServerRunnable{
     }
     void writeJson() {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		new MyWriter(sam, 3); 
+		new MyWriter(sam, 7); 
 	}
 
 	@SuppressWarnings("unchecked")
