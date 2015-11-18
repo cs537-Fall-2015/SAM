@@ -17,7 +17,4 @@ accuracy : 			10 parts per thousand
 
 other elements: 		hydrogen, oxygen, nitrogen
 
-Execution Details :
-				run SAM Main
-				run client modules
-				communication between the two servers
+Execution Details : run SAMTestMain/samTestMain.java
