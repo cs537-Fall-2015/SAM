@@ -1,0 +1,20 @@
+Sam_Details
+
+Search elements: carbon including methane
+
+A suite of three instruments: 
+				mass spectrometer 
+					- seperate elements and compounds by mass identification
+				
+				gas chromatograph
+					- heat soil and rock samples until they vaporize
+					- separate the resulting gases into various components for analysis
+				
+				tunable laser spectrometer
+					- measure the abundance of various isotopes of carbon, hydrogen, and oxygen in atmospheric gases such as methane,      water vapor, and carbon dioxide
+
+accuracy : 			10 parts per thousand
+
+other elements: 		hydrogen, oxygen, nitrogen
+
+Execution Details : run SAMTestMain/samTestMain.java
