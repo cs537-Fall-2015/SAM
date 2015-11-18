@@ -12,21 +12,13 @@ import json.GlobalReader;
 import json.MyWriter;
 
 import org.json.simple.JSONObject;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
 
 
 
 
 import callback.CallBack;
-=======
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
->>>>>>> master
-
->>>>>>> origin/master
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -37,7 +29,6 @@ import SAM.SamMain.SamController;
 import generic.RoverServerRunnable;
 
 public class SAMServer extends RoverServerRunnable{
-<<<<<<< HEAD
 
 	public SAMServer(int port) throws IOException {
 		super(port);
