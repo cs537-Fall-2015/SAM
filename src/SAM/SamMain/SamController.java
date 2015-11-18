@@ -78,6 +78,7 @@ public class SamController{
 		
 		
 	}
+	
 	public void startDrt() {
 		// TODO Auto-generated method stub
 		System.out.println("sam_PRT_START: PRT has been started.."); 
@@ -127,13 +128,14 @@ public class SamController{
 			//Dirt Removal Tool is used to clean two object
 			//1. surface = mars surface 
 			//2. tray = observation tray of contact instrument(APXS and Mahli)
+			
 			String objectToClean = "surface";
 			
 			this.setPrtMode(objectToClean);
 			
 		}else if(command.equals("sam_PRT_START")){		//Start Dirt Removal Tool (PRT)
 			
-			this.stopPrt();
+			this.startDrt();
 			
 		}else if(command.equals("sam_PRT_STOP")){	// Stop Dirt Removal Tool (PRT)
 			

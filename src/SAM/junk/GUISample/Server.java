@@ -15,7 +15,7 @@ public class Server {
 	// an ArrayList to keep the list of the Client
 	private ArrayList<ClientThread> al;
 	// if I am in a GUI
-	ServerGUI sg;
+	Server sg;
 	// to display time
 	private SimpleDateFormat sdf;
 	// the port number to listen for connection
@@ -32,7 +32,7 @@ public class Server {
 		this(port, null);
 	}
 	
-	public Server(int port, ServerGUI sg) {
+	public Server(int port, Server sg) {
 		// GUI or not
 		this.sg = sg;
 		// the port
@@ -111,8 +111,8 @@ public class Server {
 		String time = sdf.format(new Date()) + " " + msg;
 		if(sg == null)
 			System.out.println(time);
-		else
-			sg.appendEvent(time + "\n");
+		//else  --appy
+			//sg.appendEvent(time + "\n"); --appy
 	}
 	/*
 	 *  to broadcast a message to all Clients
@@ -124,8 +124,8 @@ public class Server {
 		// display message on console or GUI
 		if(sg == null)
 			System.out.print(messageLf);
-		else
-			sg.appendRoom(messageLf);     // append in the room window
+		//else --appy
+			//sg.appendRoom(messageLf);     // append in the room window -- appy
 		
 		// we loop in reverse order in case we would have to remove a Client
 		// because it has disconnected
@@ -309,4 +309,3 @@ public class Server {
 		}
 	}
 }
-
