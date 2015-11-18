@@ -1,8 +1,10 @@
 {
-  "filter_status": 0,
-  "prt_status": 0,
-  "position_set": false,
-  "sample_exist": true,
-  "cleaning_completed": false,
-  "spare_bits": 2
+  "SAM_ON": 0.0,
+  "SAM_OFF": 0.0,
+  "SAM_OPEN": 0.0,
+  "SAM_CLOSE": 0.0,
+  "SAM_CLEAN": 0.0,
+  "SAM_RELEASE": 0.0,
+  "state": false,
+  "data": {}
 }

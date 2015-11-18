@@ -1,8 +1,13 @@
-package SAM.server;
+package SAM.SamTestMain;
 
 import generic.RoverClientRunnable;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
@@ -11,6 +16,7 @@ import java.net.UnknownHostException;
 import generic.RoverClientRunnable;
 
 public class SAMClient extends RoverClientRunnable{
+<<<<<<< HEAD:src/SAM/server/SamClient.java
 
 	public SAMClient(int port, InetAddress host) throws UnknownHostException {
 		super(port, host);
@@ -27,6 +33,48 @@ public class SAMClient extends RoverClientRunnable{
        // sendMessage("SAM OFF");
         sendMessage("exit");
         
+=======
+    
+    public SAMClient(int port, InetAddress host) throws UnknownHostException {
+        super(port, host);
+    }
+    
+    public String readCommand() throws IOException, FileNotFoundException {
+    	File file = new File("commands.txt");
+    	FileInputStream fis = new FileInputStream(file);
+    	BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+    	String line = null;
+    	String cmd = null;
+    	while ((line = br.readLine()) != null) {
+    		cmd = line + "" ;
+    		sendMessage(cmd);
+    	}
+    	br.close();
+    	return cmd;
+    	
+    }
+    
+    @Override
+    public void run() {
+        //sendMessage("SAM ON");
+        //sendMessage("SAM RUN");
+        //sendMessage("SAM OFF");
+        //sendMessage("FILTER_STATUS");
+        //sendMessage("PRT_STATUS");
+        //sendMessage("BITS_STUCK");
+        // sendMessage("SAM OFF");
+        //sendMessage("exit");
+    	try {
+			readCommand();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    	
+>>>>>>> master:src/SAM/SamTestMain/SAMClient.java
         try {
             closeAll();
         } catch (IOException e) {
