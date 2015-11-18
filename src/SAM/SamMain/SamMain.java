@@ -4,7 +4,7 @@ import generic.RoverThreadHandler;
 
 import java.io.IOException;
 
-import SAM.server.SAMClient;
+import SAM.SamTestMain.SAMClient;
 import SAM.server.SAMServer;
 
 public class SamMain {
