@@ -9,29 +9,32 @@ import json.GlobalReader;
 import json.MyWriter;
 
 import org.json.simple.JSONObject;
-
-
-import callback.CallBack;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import callback.CallBack;
 
 import SAM.SamMain.SAM;
 import SAM.SamMain.SamController;
 import generic.RoverServerRunnable;
 
 public class SAMServer extends RoverServerRunnable{
-    
+	SAM sam;
+    String filePath;
     public SAMServer(int port) throws IOException {
         super(port);
-        // TODO Auto-generated constructor stub
+        this.sam = new SAM();
+        this.filePath = "7.json";
     }
     
     @Override
     public void run() {
         // TODO Auto-generated method stub
         
-        SAM sam = new SAM();
+        
         CallBack cb = new CallBack();
         
         String objectToClean = "FILTER_ROCK";
@@ -136,7 +139,7 @@ public class SAMServer extends RoverServerRunnable{
                 inputFromAnotherObject.close();
                 outputToAnotherObject.close();
             }
-            
+            writeJson();
             cb.done();
             
             System.out.println("Server: Shutting down Socket server 1!!");
@@ -151,5 +154,17 @@ public class SAMServer extends RoverServerRunnable{
             System.out.println("Server: Error:" + error.getMessage());
         } 
     }
+    void writeJson() {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		new MyWriter(sam, 7); 
+	}
+
+	@SuppressWarnings("unchecked")
+	void readJson() {
+		GlobalReader greader = new GlobalReader(7);
+		JSONObject obj = greader.getJSONObject();
+		sam.setData(obj);
+
+	}
     
 }

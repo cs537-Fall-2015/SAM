@@ -122,6 +122,14 @@ public class SAM {
         // TODO Auto-generated method stub
         
     }
+
+	public HashMap<Long, Double> getData() {
+		return data;
+	}
+
+	public void setData(HashMap<Long, Double> data) {
+		this.data = data;
+	}
     
     
 }
