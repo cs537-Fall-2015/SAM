@@ -1,10 +1,6 @@
 {
-  "SAM_ON": 0.0,
-  "SAM_OFF": 0.0,
-  "SAM_OPEN": 0.0,
-  "SAM_CLOSE": 0.0,
-  "SAM_CLEAN": 0.0,
-  "SAM_RELEASE": 0.0,
   "state": false,
-  "data": {}
+  "sample": {
+    "path": "data.txt"
+  }
 }
