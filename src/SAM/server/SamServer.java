@@ -1,5 +1,6 @@
 package SAM.server;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -15,148 +16,150 @@ import org.json.simple.parser.ParseException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import callback.CallBack;
-
-import SAM.SamMain.SAM;
-import SAM.SamMain.SamController;
+import SAM.SamModule.SAM;
 import generic.RoverServerRunnable;
 
-public class SAMServer extends RoverServerRunnable{
+public class SAMServer extends RoverServerRunnable {
 	SAM sam;
-    String filePath;
-    public SAMServer(int port) throws IOException {
-        super(port);
-        this.sam = new SAM();
-        this.filePath = "7.json";
-    }
-    
-    @Override
-    public void run() {
-        // TODO Auto-generated method stub
-        
-        
-        CallBack cb = new CallBack();
-        
-        String objectToClean = "FILTER_ROCK";
-        
-        try {
-            while (true) {
-                //System.out.println("");
-                System.out.println("SAM Server: Waiting for client request");
-                
-                // creating socket and waiting for client connection
-                getRoverServerSocket().openSocket();
-                
-                // read from socket to ObjectInputStream object
-                ObjectInputStream inputFromAnotherObject = new ObjectInputStream(getRoverServerSocket().getSocket().getInputStream());
-                
-                // convert ObjectInputStream object to String
-                String message = (String) inputFromAnotherObject.readObject();
-                System.out.println("");
-                System.out.println("SAM Server: Message Received from Client - "+ message.toUpperCase());
-                
-                ObjectOutputStream outputToAnotherObject = new ObjectOutputStream(getRoverServerSocket().getSocket().getOutputStream());
-                Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                
-                if (message.equalsIgnoreCase("exit"))
-                    break;
-                if (message.equalsIgnoreCase("SAM ON")){
-                    sam.turnOn();
-                }
-                if (message.equalsIgnoreCase("SAM OFF")){
-                    sam.turnOff();
-                }
-                if (message.equalsIgnoreCase("SAM RUN")){
-                    //sam.get;
-                }
-                
-                //One of event which are going to performed by our instrument
-                //In order to perform this event we are going to execute couple of
-                //commands in order to complete one task
-                
-                //All commands are written in PadsController.java class
-                
-                else if(message.equalsIgnoreCase("FILTER_STATUS")) {
-                    SamController controller = new SamController();
-                    sam= controller.action("SA_FILTER_STATUS");
-                    String jsonString = gson.toJson(sam);
-                    outputToAnotherObject.writeObject(jsonString);
-                    
-                    Thread.sleep(3000);
-                    
-                }
-                
-                else if(message.equalsIgnoreCase("PRT_STATUS")) {
-                    SamController controller = new SamController();
-                    sam = controller.action("SAM_PRT_STATUS");
-                    String jsonString = gson.toJson(sam);
-                    outputToAnotherObject.writeObject(jsonString);
-                    
-                    Thread.sleep(3000);
-                }
-                
-                else if(message.equalsIgnoreCase("FILTER_START")) {
-                    
-                    SamController controller = new SamController();
-                    controller.action("SAM_SET_POSITION");
-                    Thread.sleep(5000);
-                    controller.action("SAM_FILTER_START");
-                    Thread.sleep(5000);
-                    sam = controller.action("SAM_FILTER_STOP");
-                    
-                    MyWriter JSONWriter = new MyWriter(sam, Constants.ONE);
-                    String jsonString = gson.toJson(sam);
-                    outputToAnotherObject.writeObject(jsonString);
-                    
-                    Thread.sleep(5000);
-                    
-                }
-                else if(message.equalsIgnoreCase("PRT_START")) {
-                    SamController controller = new SamController();
-                    Thread.sleep(3000);
-                    controller.action("SAM_PRT_SET_MODE");
-                    Thread.sleep(5000);
-                    controller.action("SAM_PRT_START");
-                    Thread.sleep(5000);
-                    sam = controller.action("SAM_PRT_STOP");
-                    
-                    String jsonString = gson.toJson(sam); 
-                    outputToAnotherObject.writeObject(jsonString);
-                    Thread.sleep(5000);
-                    
-                }
-                else if(message.equalsIgnoreCase("BITS_STUCK")) {
-                    SamController controller = new SamController();
-                    Thread.sleep(3000);
-                    controller.action("SAM_DIS_ENGAGE_BITS");
-                    Thread.sleep(5000);
-                    sam= controller.action("SAM_LOAD_BITS");
-                    String jsonString = gson.toJson(sam); 
-                    outputToAnotherObject.writeObject(jsonString);
-                    
-                }
-                
-                inputFromAnotherObject.close();
-                outputToAnotherObject.close();
-            }
-            writeJson();
-            cb.done();
-            
-            System.out.println("Server: Shutting down Socket server 1!!");
-            closeAll();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (Exception error) {
-            System.out.println("Server: Error:" + error.getMessage());
-        } 
-    }
-    void writeJson() {
+	String filePath;
+	File datafile;
+
+	public SAMServer(int port) throws IOException {
+		super(port);
+		this.filePath = "7.json";
+		this.datafile = new File("data.txt");
+		this.sam = new SAM(datafile);
+
+	}
+
+	@Override
+	public void run() {
+
+		try {
+			while (true) {
+
+				System.out.println("SAM Server: Waiting for client request");
+
+				// read the JSON file
+				readJson();
+
+				// creating socket and waiting for client connection
+				getRoverServerSocket().openSocket();
+
+				// read from socket to ObjectInputStream object
+				ObjectInputStream inputFromAnotherObject = new ObjectInputStream(
+						getRoverServerSocket().getSocket().getInputStream());
+
+				// convert ObjectInputStream object to String
+				String message = (String) inputFromAnotherObject.readObject();
+				System.out.println("SAM Server: Message Received from Client - " + message.toUpperCase());
+
+				// create ObjectOutputStream object
+				ObjectOutputStream outputToAnotherObject = new ObjectOutputStream(
+						getRoverServerSocket().getSocket().getOutputStream());
+
+				if (message.equals("S-PYR")) {
+					System.out.println("initiating pyrolysis with GCMS");
+					System.out
+		            .println("=================================================");
+					sam.pyrolysis();
+
+				} else if (message.equals("S-DER")) {
+					System.out.println("initiating derivatization");
+					System.out
+		            .println("=================================================");
+					sam.derivatization();
+
+					message = "SAM Data:" + sam.getData();
+
+				} else if (message.equals("S-CMB")) {
+					System.out.println("initiating combustion");
+					System.out
+		            .println("=================================================");
+					sam.combustion();
+
+				} else if (message.equals("A-DIR")) {
+					System.out.println("initiating direct atmospheric measurement");
+					System.out
+		            .println("=================================================");
+					sam.atmosphericMeasurement();
+
+				} else if (message.equals("A-ENR")) {
+					System.out.println("initiating atmospheric enrichment");
+					System.out
+		            .println("=================================================");
+					sam.atmosphericEnrichment();
+
+				} else if (message.equals("A-MET")) {
+					System.out.println("initiating methane enrichment");
+					System.out
+		            .println("=================================================");
+					sam.methaneEnrichment();
+
+				} else if (message.equals("A-NGE")) {
+					System.out.println("initiating noble gas enrichment");
+					System.out
+		            .println("=================================================");
+					sam.nobleGasEnrichment();
+
+				} else if (message.equals("CAL-GAS")) {
+					System.out.println("initiating in situ gas calibration");
+					System.out
+		            .println("=================================================");
+					sam.inSituGasCalibration();
+
+				} else if (message.equals("CAL-SOL")) {
+					System.out.println("initiating solid sample in situ gas calibration");
+					System.out
+		            .println("=================================================");
+
+				} else if (message.equals("SAM_ON")) {
+					sam.turnOn();
+					System.out
+		            .println("=================================================");
+
+				} else if (message.equals("SAM_OFF")) {
+					sam.turnOff();
+					System.out
+		            .println("=================================================");
+
+				} else if (message.equals("SAM_GET_POWER")) {
+
+					message = "SAM power consumption is: " + sam.getPowerConsumption();
+				}
+
+				writeJson();
+
+				// write object to Socket
+				outputToAnotherObject.writeObject("SAM Server response - " + message);
+
+				// close resources
+				inputFromAnotherObject.close();
+				outputToAnotherObject.close();
+
+				// getRoverServerSocket().closeSocket();
+				// terminate the server if client sends exit request
+				if (message.equalsIgnoreCase("exit"))
+					break;
+			}
+			System.out.println("Server: Shutting down Socket server 1!!");
+			// close the ServerSocket object
+			closeAll();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception error) {
+			System.out.println("Server: Error:" + error.getMessage());
+		}
+
+	}
+
+	void writeJson() {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		new MyWriter(sam, 7); 
+		new MyWriter(sam, 7);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -166,5 +169,5 @@ public class SAMServer extends RoverServerRunnable{
 		sam.setData(obj);
 
 	}
-    
+
 }
