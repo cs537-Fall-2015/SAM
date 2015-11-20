@@ -9,6 +9,7 @@ import json.Constants;
 import json.GlobalReader;
 import json.MyWriter;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -22,14 +23,12 @@ import generic.RoverServerRunnable;
 public class SAMServer extends RoverServerRunnable {
 	SAM sam;
 	String filePath;
-	File datafile;
 
 	public SAMServer(int port) throws IOException {
 		super(port);
 		this.filePath = "7.json";
-		this.datafile = new File("data.txt");
-		this.sam = new SAM(datafile);
-
+		sam = new SAM();
+		
 	}
 
 	@Override
@@ -40,8 +39,7 @@ public class SAMServer extends RoverServerRunnable {
 
 				System.out.println("SAM Server: Waiting for client request");
 
-				// read the JSON file
-				readJson();
+				
 
 				// creating socket and waiting for client connection
 				getRoverServerSocket().openSocket();
@@ -60,68 +58,44 @@ public class SAMServer extends RoverServerRunnable {
 
 				if (message.equals("S-PYR")) {
 					System.out.println("initiating pyrolysis with GCMS");
-					System.out
-		            .println("=================================================");
 					sam.pyrolysis();
 
 				} else if (message.equals("S-DER")) {
 					System.out.println("initiating derivatization");
-					System.out
-		            .println("=================================================");
 					sam.derivatization();
-
-					message = "SAM Data:" + sam.getData();
 
 				} else if (message.equals("S-CMB")) {
 					System.out.println("initiating combustion");
-					System.out
-		            .println("=================================================");
 					sam.combustion();
 
 				} else if (message.equals("A-DIR")) {
 					System.out.println("initiating direct atmospheric measurement");
-					System.out
-		            .println("=================================================");
 					sam.atmosphericMeasurement();
 
 				} else if (message.equals("A-ENR")) {
 					System.out.println("initiating atmospheric enrichment");
-					System.out
-		            .println("=================================================");
 					sam.atmosphericEnrichment();
 
 				} else if (message.equals("A-MET")) {
-					System.out.println("initiating methane enrichment");
-					System.out
-		            .println("=================================================");
+					System.out.println("initiating methane enrichment experiment");
 					sam.methaneEnrichment();
 
 				} else if (message.equals("A-NGE")) {
 					System.out.println("initiating noble gas enrichment");
-					System.out
-		            .println("=================================================");
 					sam.nobleGasEnrichment();
 
 				} else if (message.equals("CAL-GAS")) {
 					System.out.println("initiating in situ gas calibration");
-					System.out
-		            .println("=================================================");
 					sam.inSituGasCalibration();
 
 				} else if (message.equals("CAL-SOL")) {
 					System.out.println("initiating solid sample in situ gas calibration");
-					System.out
-		            .println("=================================================");
-
+				
 				} else if (message.equals("SAM_ON")) {
 					sam.turnOn();
-					System.out
-		            .println("=================================================");
 
 				} else if (message.equals("SAM_OFF")) {
 					sam.turnOff();
-					System.out
-		            .println("=================================================");
 
 				} else if (message.equals("SAM_GET_POWER")) {
 
@@ -131,7 +105,7 @@ public class SAMServer extends RoverServerRunnable {
 				writeJson();
 
 				// write object to Socket
-				outputToAnotherObject.writeObject("SAM Server response - " + message);
+				//outputToAnotherObject.writeObject("SAM Server response - " + message);
 
 				// close resources
 				inputFromAnotherObject.close();
@@ -141,7 +115,7 @@ public class SAMServer extends RoverServerRunnable {
 				// terminate the server if client sends exit request
 				if (message.equalsIgnoreCase("exit"))
 					break;
-			}
+				}
 			System.out.println("Server: Shutting down Socket server 1!!");
 			// close the ServerSocket object
 			closeAll();
@@ -166,7 +140,7 @@ public class SAMServer extends RoverServerRunnable {
 	void readJson() {
 		GlobalReader greader = new GlobalReader(7);
 		JSONObject obj = greader.getJSONObject();
-		sam.setData(obj);
+		//sam.setData(obj);
 
 	}
 
