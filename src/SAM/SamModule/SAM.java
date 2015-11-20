@@ -54,7 +54,7 @@ public class SAM {
     	ArrayList<Double> values = new ArrayList<Double>();
     	System.out.println();
     	System.out.println("Detecting organic counts in the sample");
-    	for(int i = 0; i < 100; i++) {
+    	for(int i = 0; i < 50; i++) {
     		values.add((Math.random()*(0.5)));
     	}
     	Thread.sleep(1000);
@@ -85,7 +85,7 @@ public class SAM {
  		Thread.sleep(1000);
  		System.out.println("Calculating relative intensity:");
  		System.out.println();
- 		for(int i = 0; i < 100; i++ ) {
+ 		for(int i = 0; i < 25; i++ ) {
  			double value = (Math.random()*1000000); 			
  			values.add(value);
  			mins.add(time++);
@@ -130,18 +130,51 @@ public class SAM {
     	 	
     }
     
-    public void atmosphericMeasurement() {
+    public void atmosphericMeasurement() throws InterruptedException {
     	//Seq #4
     	// QMS and TLS analysis of atmospheric chemicals and isotopic composition
     	System.out.println();
-    	System.out.println("Calculating abundance from the sampled gas");
+    	System.out.println("Detecting gases from atmosphere");
     	System.out.println();
+    	System.out.println("Calculating abundance from the sampled gases");
+    	JSONObject gasObjects = new JSONObject();
+    	String gases[] = {"CO2","Ar","N2","O2","CO"};
+    	for(int i = 0; i < 5; i++) {
+    			double value = Math.random();
+    			JSONObject atmGas = new JSONObject();
+    			atmGas.put("Volum mixing ratio", value);
+    			atmGas.put("sol", sol);
+    			gasObjects.put(gases[i], atmGas);	
+    	}   	
+    	Thread.sleep(1000);
+    	System.out.println("Writing to the data set");
+    	System.out.println();    	
+    	expData.put("Direct-Atmospheric-Measurement Experiment",gasObjects);
     }
     
-    public void atmosphericEnrichment() {
+    public void atmosphericEnrichment() throws InterruptedException {
     	//Seq #5
     	// QMS, TLS, and GCMS analysis of stmospheric trace species
-    	
+    	System.out.println();
+    	System.out.println("Performing enirhcment experiment of the sampled gas");
+    	JSONObject atmEnrich = new JSONObject();
+    	JSONArray values = new JSONArray();
+    	JSONArray mzs = new JSONArray();
+    	int mz = 10;
+    	for(int i = 0; i < 20; i++) {
+    		int counts = (int) (1000 + Math.random()*1000000);
+    		mz++;
+    		values.add(counts);
+    		mzs.add(mz);
+    	}
+    	Thread.sleep(1000);
+    	System.out.println("Writing to the data set");
+    	atmEnrich.put("sol", sol);
+    	atmEnrich.put("Count rate (counts/s)", values);
+    	atmEnrich.put("m/z", mzs);
+    	System.out.println();    	
+    	expData.put("Atmospheric-Enrichment Experiment",atmEnrich);
+    	   	
     }
     
     public void methaneEnrichment() throws InterruptedException {
