@@ -28,7 +28,6 @@ public class SAMServer extends RoverServerRunnable {
 		super(port);
 		this.filePath = "7.json";
 		sam = new SAM();
-		
 	}
 
 	@Override
@@ -139,7 +138,7 @@ public class SAMServer extends RoverServerRunnable {
 	@SuppressWarnings("unchecked")
 	void readJson() {
 		GlobalReader greader = new GlobalReader(7);
-		JSONObject obj = greader.getJSONObject();
+		//JSONObject obj = greader.getJSONObject();
 		//sam.setData(obj);
 
 	}
