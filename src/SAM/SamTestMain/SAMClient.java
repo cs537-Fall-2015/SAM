@@ -38,14 +38,7 @@ public class SAMClient extends RoverClientRunnable{
     
     @Override
     public void run() {
-        //sendMessage("SAM ON");
-        //sendMessage("SAM RUN");
-        //sendMessage("SAM OFF");
-        //sendMessage("FILTER_STATUS");
-        //sendMessage("PRT_STATUS");
-        //sendMessage("BITS_STUCK");
-        // sendMessage("SAM OFF");
-        //sendMessage("exit");
+       
     	try {
 			readCommand();
 		} catch (FileNotFoundException e1) {
@@ -76,7 +69,7 @@ public class SAMClient extends RoverClientRunnable{
             System.out
             .println("=================================================");
             System.out
-            .println("SAM Testing Framework: Sending request to Socket Server");
+            .println("SAM Testing Framework: SAM Client: Sending request to Socket Server");
             System.out
             .println("=================================================");
             
