@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
-import org.jfree.ui.RefineryUtilities;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -29,6 +28,7 @@ public class SAM {
     public SAM() {
         state = ON;
         expData = new JSONObject();
+        sol++;
     }
     
     // Turning on the SAM instrument suite for experiment
@@ -65,7 +65,7 @@ public class SAM {
     	pyrolysisAnalysis.put("Intrument", instrument);
     	pyrolysisAnalysis.put("unit", unit);
     	pyrolysisAnalysis.put("values", values);
-    	pyrolysisAnalysis.put("sol", sol++);
+    	pyrolysisAnalysis.put("sol", sol);
     	expData.put("Pyrolysis Experiment [Exp Seq 4]",pyrolysisAnalysis);
 		
 		
@@ -97,6 +97,7 @@ public class SAM {
  		JSONObject derivatization = new JSONObject();
  		derivatization.put(relInt, values);
  		derivatization.put(relTime, mins);
+ 		derivatization.put("sol", sol);
  		expData.put("Derivatization Experiment [Exp Seq 2]", derivatization);
  		
     }
@@ -124,12 +125,7 @@ public class SAM {
     	JSONObject combustion = new JSONObject();
  		combustion.put(cps, values);
  		combustion.put(temp, temps);
- 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		//new MyWriter(combustion, 73);
- 		//final XYSeriesDemo demo = new XYSeriesDemo("XY Series Demo");
-		//demo.pack();
-		//RefineryUtilities.centerFrameOnScreen(demo);
-		//demo.setVisible(true);
+ 		combustion.put("sol", sol);
  		expData.put("Combustion Experiment [Exp Seq 8]", combustion);
     	 	
     }
@@ -158,7 +154,7 @@ public class SAM {
     	System.out.println();
     	methane.put("value", value);
     	methane.put("unit", "ppbv");
-    	methane.put("sol", sol++);
+    	methane.put("sol", sol);
     	expData.put("metahne-Enrichment Experiment",methane);
     	
     }
