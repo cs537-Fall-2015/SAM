@@ -28,7 +28,7 @@ public class SAM {
     public SAM() {
         state = ON;
         expData = new JSONObject();
-        sol++;
+        ++sol;
     }
     
     // Turning on the SAM instrument suite for experiment
