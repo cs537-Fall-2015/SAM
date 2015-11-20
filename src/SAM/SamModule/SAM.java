@@ -133,7 +133,9 @@ public class SAM {
     public void atmosphericMeasurement() {
     	//Seq #4
     	// QMS and TLS analysis of atmospheric chemicals and isotopic composition
+    	System.out.println();
     	System.out.println("Calculating abundance from the sampled gas");
+    	System.out.println();
     }
     
     public void atmosphericEnrichment() {
@@ -159,21 +161,40 @@ public class SAM {
     	
     }
     
-    public void nobleGasEnrichment() {
+    public void nobleGasEnrichment() throws InterruptedException {
     	//Seq #6
     	// Noble gas analysis with SAM CSPL in QMS noble enrichment
+    	JSONObject nobleGas = new JSONObject();
+    	ArrayList<Double> xe = new ArrayList<Double>();
+    	System.out.println();
+    	System.out.println("Performing enrichment cycles for the noble gas sample");
+    	Thread.sleep(1000);
+    	for(int i = 0; i < 100; i++ ) {
+    		double value = 100 + Math.random()*1000;;
+    		xe.add(value);
+    	}
+    	System.out.println("Writing to the data set");
+    	System.out.println();
+    	nobleGas.put("sol", sol);
+    	nobleGas.put("QMS Intensity (cps)", xe);
+    	expData.put("Noble-Gas-Enrichment Experiment",nobleGas);
+    	
     }
     
     public void inSituGasCalibration() {
     	//Seq #9
     	//Calibrating QMS, TLS and GCMS to check instrument performance and changes with time
+    	System.out.println();
     	System.out.println("Calibrating for Direct QMS Atmospheric Measurements");
+    	System.out.println();
     }
     
     public void solidSampleInSituCalibration() {
     	//Seq #3
     	//chemical and isotopic analysis with internal calibration standards
+    	System.out.println();
     	System.out.println("Calibration for Evolved Gas Analysis of Solid Samples");
+    	System.out.println();
     }
 
 	public String getPowerConsumption() {

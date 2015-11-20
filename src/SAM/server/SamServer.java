@@ -89,6 +89,7 @@ public class SAMServer extends RoverServerRunnable {
 
 				} else if (message.equals("CAL-SOL")) {
 					System.out.println("initiating solid sample in situ gas calibration");
+					sam.solidSampleInSituCalibration();
 				
 				} else if (message.equals("SAM_ON")) {
 					sam.turnOn();
