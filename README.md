@@ -1,16 +1,16 @@
 This runs on Eclipse. (Preferably Version Mars)
 
-+Extra JARS Needed:
++ Extra JARS Needed:
 -gson 2.2.2
 -json simple 1.1.1
 
-+Created libs folder and added JARS
-+Added JARS to Eclipse
++ Create libs folder and added JARS
++ Add JARS to Eclipse
 -right-click folder
 -select Properties -> Java Build Path -> Libraries (tab)
 --select add external JARS... -> select JARS from libs folder and add both JARS
 
-+To run the Program:
++ To run the Program:
 -navigate to src -> SAM.SamTestMain
 -run file samTestMain.java
 
