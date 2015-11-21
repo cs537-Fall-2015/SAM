@@ -97,9 +97,6 @@ public class SAMServer extends RoverServerRunnable {
 				} else if (message.equals("SAM_OFF")) {
 					sam.turnOff();
 
-				} else if (message.equals("SAM_GET_POWER")) {
-
-					message = "SAM power consumption is: " + sam.getPowerConsumption();
 				}
 
 				writeJson();

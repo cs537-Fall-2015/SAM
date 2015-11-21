@@ -142,7 +142,7 @@ public class SAM {
     	for(int i = 0; i < 5; i++) {
     			double value = Math.random();
     			JSONObject atmGas = new JSONObject();
-    			atmGas.put("Volum mixing ratio", value);
+    			atmGas.put("Volume mixing ratio", value);
     			atmGas.put("sol", sol);
     			gasObjects.put(gases[i], atmGas);	
     	}   	
