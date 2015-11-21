@@ -9,11 +9,6 @@ import json.Constants;
 import json.GlobalReader;
 import json.MyWriter;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -37,8 +32,6 @@ public class SAMServer extends RoverServerRunnable {
 			while (true) {
 
 				System.out.println("SAM Server: Waiting for client request");
-
-				
 
 				// creating socket and waiting for client connection
 				getRoverServerSocket().openSocket();
@@ -90,7 +83,7 @@ public class SAMServer extends RoverServerRunnable {
 				} else if (message.equals("CAL-SOL")) {
 					System.out.println("initiating solid sample in situ gas calibration");
 					sam.solidSampleInSituCalibration();
-				
+
 				} else if (message.equals("SAM_ON")) {
 					sam.turnOn();
 
@@ -102,7 +95,8 @@ public class SAMServer extends RoverServerRunnable {
 				writeJson();
 
 				// write object to Socket
-				//outputToAnotherObject.writeObject("SAM Server response - " + message);
+				// outputToAnotherObject.writeObject("SAM Server response - " +
+				// message);
 
 				// close resources
 				inputFromAnotherObject.close();
@@ -112,7 +106,7 @@ public class SAMServer extends RoverServerRunnable {
 				// terminate the server if client sends exit request
 				if (message.equalsIgnoreCase("exit"))
 					break;
-				}
+			}
 			System.out.println("Server: Shutting down Socket server 1!!");
 			// close the ServerSocket object
 			closeAll();
@@ -136,8 +130,8 @@ public class SAMServer extends RoverServerRunnable {
 	@SuppressWarnings("unchecked")
 	void readJson() {
 		GlobalReader greader = new GlobalReader(7);
-		//JSONObject obj = greader.getJSONObject();
-		//sam.setData(obj);
+		// JSONObject obj = greader.getJSONObject();
+		// sam.setData(obj);
 
 	}
 
