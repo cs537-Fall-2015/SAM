@@ -90,7 +90,7 @@ public class SAMClient extends RoverClientRunnable{
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (Exception error) {
-            System.out.println("Testing Framework: Error:" + error.getMessage());
+            //System.out.println("Testing Framework: Error:" + error.getMessage());
         }
         
     }
