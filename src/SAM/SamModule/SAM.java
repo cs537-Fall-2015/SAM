@@ -16,6 +16,15 @@ import com.google.gson.GsonBuilder;
 import json.MyWriter;
 
 // SAM instrument suite
+// pyrolysis
+// derivatization
+// combustion
+// direct atmospheric measurement
+// atmospheric enrichment
+// methane enrichment
+// noble gas enrichment
+// in situ Gas Calibration
+// solid sample in situ calibration
 
 public class SAM {
 

@@ -79,8 +79,8 @@ public class SAMClient extends RoverClientRunnable{
             inputFromAnotherObject = new ObjectInputStream(getRoverSocket()
                                                            .getSocket().getInputStream());
             String message = (String) inputFromAnotherObject.readObject();
-            System.out.println("SAM Testing Framework received: "
-                               + message.toUpperCase());
+           // System.out.println("SAM Testing Framework received: "
+                  //             + message.toUpperCase());
             
             // close resources
             inputFromAnotherObject.close();
